@@ -113,7 +113,7 @@ module Homebrew
          formula
   else
     # Tap livecheck command
-    brew 'tap', 'homebrew/livecheck'
+    # brew 'tap', 'homebrew/livecheck'
 
     # Support multiple formulae in input
     formula = formula.split(/[ ,\n]/).reject(&:blank?) unless formula.blank?
