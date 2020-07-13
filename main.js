@@ -1,6 +1,6 @@
-import { exec as _exec } from '@actions/exec'
-import { setFailed } from '@actions/core'
-import { join } from 'path'
+const exec = require('@actions/exec')
+const core = require('@actions/core')
+const path = require('path')
 
 async function main() {
     try {
@@ -9,11 +9,11 @@ async function main() {
         process.env.HOMEBREW_NO_ANALYTICS = "1"
         process.env.HOMEBREW_COLOR = "1"
 
-        await _exec("brew", ["update-reset"])
-        await _exec("brew", ["tap", "homebrew/livecheck"])
-        await _exec("brew", ["ruby", join(__dirname, "main.rb")])
+        await exec.exec("brew", ["update-reset"])
+        await exec.exec("brew", ["tap", "homebrew/livecheck"])
+        await exec.exec("brew", ["ruby", path.join(__dirname, "main.rb")])
     } catch (error) {
-        setFailed(error.message)
+        core.setFailed(error.message)
     }
 }
 
